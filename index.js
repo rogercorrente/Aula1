@@ -51,20 +51,17 @@ class Funcionario extends Model{
         type: DataTypes.INTEGER,
         references: {
           model: Setor,
-          key: 'idsetor'
+          key: 'idsetor'}
         },
-        referencesKey: 'idsetor',
-        allowNull: false,
-      },
       nome: {
         type: DataTypes.STRING(60),
-        allowNull: false,
+        allowNull: false
       },
       nascimento: {
         type: DataTypes.DATE
       },
       telefone: {
-        type: DataTypes.STRING(15),
+        type: DataTypes.STRING(15)
       }
     }, {sequelize, modelName: 'funcionario', tableName: 'funcionarios'})
   }
@@ -101,5 +98,16 @@ Funcionario.init(sequelize);
   // listando objetos após a atualização
   const setores_exclusao = await Setor.findAll();
   console.log("Lista de setores após a exclusão: \n", JSON.stringify(setores_exclusao, null, 2), "\n\n");
-  
+
+
+//Create funcionario 
+  const funcionario_create = await Funcionario.create({idsetor: 2, nome: "Ana", nascimento:"1978-04-12", telefone: "01219219"});
+  const funcionario_create1 = await Funcionario.create({idsetor: 3, nome: "Ivo", nascimento:"2000-12-01", telefone: "07280921"});
+  const funcionario_create2 = await Funcionario.create({idsetor: 2, nome: "OTO", nascimento:"1987-02-07", telefone: "06924324"});
+  const funcionario_create3 = await Funcionario.create({idsetor: 3, nome: "Carina", nascimento:"1990-09-09", telefone: "02932176"});
+
+
+  // listando objetos funcionários
+  const funcionarios_listar = await Funcionario.findAll();
+  console.log("Lista de funcionários: \n", JSON.stringify(funcionarios_listar, null, 2), "\n\n");
 })();
