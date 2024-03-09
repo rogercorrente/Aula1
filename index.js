@@ -84,5 +84,22 @@ Funcionario.init(sequelize);
   const setores_listar = await Setor.findAll();
 
   console.log("Lista de setores: \n", JSON.stringify(setores_listar, null, 2), "\n\n");
+
+//UPDATE - Atualizar objetos
+  const setor_chave = await Setor.findByPk(3);
+  setor_chave.nome = "Estoque";
+  const resultado = await setor_chave.save();
+  console.log(resultado);
+// listando objetos após a atualização
+  const setores_update = await Setor.findAll();
+  console.log("Lista de setores: Atualizada \n", JSON.stringify(setores_update, null, 2), "\n\n");
+
+//DELETE - Deletar objetos
+  const setor_delete = await Setor.findByPk(1);
+  setor_delete.destroy();
+
+  // listando objetos após a atualização
+  const setores_exclusao = await Setor.findAll();
+  console.log("Lista de setores após a exclusão: \n", JSON.stringify(setores_exclusao, null, 2), "\n\n");
   
 })();
